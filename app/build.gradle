@@ -1,0 +1,74 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+apply from: 'dependencies.gradle'
+
+android {
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    defaultConfig {
+        applicationId rootProject.ext.androidApplicationId
+        minSdkVersion rootProject.ext.androidMinSdkVersion
+        targetSdkVersion rootProject.ext.androidTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+
+    def dependencies = rootProject.ext.appDependencies
+
+    //Include jar files from libs folder
+    implementation dependencies.fileTree
+
+    //Core for kotlin and androidX
+    implementation dependencies.kotlin_std_lib
+    implementation dependencies.android_x_core
+    implementation dependencies.constraint_layout
+
+
+    //testing
+    testImplementation dependencies.junit
+    androidTestImplementation dependencies.android_x_junit
+    androidTestImplementation dependencies.test_expresso
+
+    //Image loader lib
+    implementation dependencies.coil
+
+    //Material theme and components
+    implementation dependencies.material_design
+
+    //ViewModel and LiveData
+    implementation dependencies.lifecycle
+
+    //Dependency injection. Dagger core
+    kapt dependencies.dagger_kapt
+    implementation dependencies.dagger_core
+
+    // Dagger Android for simplifying android related stuff
+    implementation dependencies.dagger_android_core
+    implementation dependencies.dagger_android_support
+    kapt dependencies.dagger_android_kapt
+}
