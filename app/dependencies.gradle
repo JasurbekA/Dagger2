@@ -15,6 +15,7 @@ rootProject.ext {
     android_x_core_ktx_version = "1.1.0"
     junit_version = "4.12"
     coil_version = "0.9.4"
+    retrofit_version = "2.6.2"
     android_x_junit_version = "1.1.1"
     lifecycle_version = '2.2.0-alpha03'
 
@@ -38,6 +39,10 @@ rootProject.ext {
             junit : "junit:junit:$junit_version",
             android_x_junit : "androidx.test.ext:junit:$android_x_junit_version",
             test_expresso : "androidx.test.espresso:espresso-core:$test_expresso_version",
+
+            //Retrofit
+            retrofit : "com.squareup.retrofit2:retrofit:$retrofit_version",
+            gson_convertor : "com.squareup.retrofit2:converter-gson:$retrofit_version",
 
             //Dependency injection. Dagger core
             dagger_kapt: "com.google.dagger:dagger-compiler:$dagger_version",

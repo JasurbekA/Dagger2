@@ -1,16 +1,23 @@
 package com.example.dagger2.di
 
-import android.app.Application
+import com.example.dagger2.utils.Constants
 import dagger.Module
 import dagger.Provides
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
 @Module
 class AppModule {
 
 
     companion object {
-        @JvmStatic
+        @Singleton
         @Provides
-        fun provideTestString() : String = "Hello from dagger, appModule"
+        @JvmStatic
+        fun provideRetrofitInstance() = Retrofit.Builder()
+            .baseUrl(Constants.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
     }
 }

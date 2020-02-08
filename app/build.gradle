@@ -63,6 +63,11 @@ dependencies {
     //ViewModel and LiveData
     implementation dependencies.lifecycle
 
+    //Retrofit
+    implementation dependencies.retrofit
+    implementation dependencies.gson_convertor
+
+
     //Dependency injection. Dagger core
     kapt dependencies.dagger_kapt
     implementation dependencies.dagger_core
