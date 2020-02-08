@@ -8,3 +8,5 @@ It is used to converting dagger stuff from Java to Kotlin
 Material components
 
 Gradle DSL
+
+Used Coil insted of Glide 
