@@ -1,6 +1,7 @@
 package com.example.dagger2.ui.auth
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.api.load
 import com.example.dagger2.R
+import com.example.dagger2.ui.main.MainActivity
 import com.example.dagger2.utils.extentions.toast
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_auth.*
@@ -62,15 +64,14 @@ class AuthActivity : DaggerAppCompatActivity() {
             this,
             Observer {
                 when (it) {
-                    is AuthViewModel.UserAttemptLoginState.OnFailAuth -> {
+                    is AuthViewModel.UserAttemptLoginState.OnUserNotAuthenticated -> {
                         toast("Fail to Auth")
                     }
                     is AuthViewModel.UserAttemptLoginState.OnLoading -> {
                         progress_bar.visibility = View.VISIBLE
                     }
                     is AuthViewModel.UserAttemptLoginState.OnSuccess -> {
-                        toast("Yes user is exist")
-                        progress_bar.visibility = View.GONE
+                       onAuthAttemptSuccess()
                     }
                     is AuthViewModel.UserAttemptLoginState.OnError -> {
                         toast("Invalid User ID entered ${it.err.localizedMessage}")
@@ -79,5 +80,16 @@ class AuthActivity : DaggerAppCompatActivity() {
                 }
             }
         )
+    }
+
+    private fun onAuthAttemptSuccess() {
+        toast("Yes user is exist")
+        progress_bar.visibility = View.GONE
+        navigateToMainPage()
+    }
+    private fun navigateToMainPage() {
+        val toMainPage = Intent(this, MainActivity::class.java)
+        startActivity(toMainPage)
+        finishAffinity()
     }
 }
