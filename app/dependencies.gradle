@@ -18,6 +18,10 @@ rootProject.ext {
     retrofit_version = "2.6.2"
     android_x_junit_version = "1.1.1"
     lifecycle_version = '2.2.0-alpha03'
+    rx_java_version = "2.2.17"
+    rx_android_version = "2.1.1"
+    rx_call_adapter_version = "2.7.1"
+    multi_dex_version = "1.0.3"
 
     appDependencies = [
             //Include jar files from libs folder
@@ -43,6 +47,14 @@ rootProject.ext {
             //Retrofit
             retrofit : "com.squareup.retrofit2:retrofit:$retrofit_version",
             gson_convertor : "com.squareup.retrofit2:converter-gson:$retrofit_version",
+
+            //RxJava and RxAndroid
+            rx_java : "io.reactivex.rxjava2:rxjava:$rx_java_version",
+            rx_android : "io.reactivex.rxjava2:rxandroid:$rx_android_version",
+            rx_call_adapter : "com.squareup.retrofit2:adapter-rxjava2:$rx_call_adapter_version",
+
+            //MultiDex support Android < 5.0
+            multi_dex : "com.android.support:multidex:$multi_dex_version",
 
             //Dependency injection. Dagger core
             dagger_kapt: "com.google.dagger:dagger-compiler:$dagger_version",

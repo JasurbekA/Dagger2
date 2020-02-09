@@ -17,6 +17,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     compileOptions {
@@ -66,6 +67,14 @@ dependencies {
     //Retrofit
     implementation dependencies.retrofit
     implementation dependencies.gson_convertor
+
+    //RxJava and RxAndroid
+    implementation dependencies.rx_java
+    implementation dependencies.rx_android
+    implementation dependencies.rx_call_adapter
+
+    //MultiDex Support
+    implementation dependencies.multi_dex
 
 
     //Dependency injection. Dagger core
